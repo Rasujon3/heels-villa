@@ -3,6 +3,7 @@ import "./Cart.css";
 import { IoTrashBin } from "react-icons/io5";
 
 const Cart = ({ cart, products, handleClearCart }) => {
+  const [offer, setOffer] = useState(false);
   const [freeProduct, setFreeProduct] = useState({});
 
   const handleOffer = () => {
@@ -10,6 +11,14 @@ const Cart = ({ cart, products, handleClearCart }) => {
     const item = products[randomNumber];
     setFreeProduct(item);
   };
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      setOffer(true);
+    } else {
+    }
+  }, [cart]);
+
   return (
     <div className="cart">
       <div className="cart-header">
@@ -34,7 +43,11 @@ const Cart = ({ cart, products, handleClearCart }) => {
         </div>
       ))}
       <p>Buy one get one free</p>
-      <button className="offer-button" onClick={handleOffer}>
+      <button
+        className={offer ? "offer-button" : "offer-button-disabled"}
+        onClick={handleOffer}
+        disabled={!offer}
+      >
         Get One for me
       </button>
       {Object.keys(freeProduct).length > 0 && (
