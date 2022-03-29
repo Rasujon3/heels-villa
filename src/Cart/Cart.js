@@ -40,6 +40,7 @@ const Cart = ({ cart, products, handleClearCart }) => {
               {product.name} {product.color}
             </p>
             <p>$ {product.price}</p>
+            <p>{product.quantity}</p>
           </div>
         </div>
       ))}

@@ -14,7 +14,17 @@ const Shop = () => {
   }, []);
 
   const handleAddToCart = (selectedProduct) => {
-    const newCart = [...cart, selectedProduct];
+    let newCart = [];
+    const exist = cart.find((product) => product.id == selectedProduct.id);
+
+    if (!exist) {
+      selectedProduct.quantity = 1;
+      newCart = [...cart, selectedProduct];
+    } else {
+      const rest = cart.filter((product) => product.id !== selectedProduct.id);
+      selectedProduct.quantity = selectedProduct.quantity + 1;
+      newCart = [...rest, selectedProduct];
+    }
     setCart(newCart);
   };
 
