@@ -16,6 +16,7 @@ const Cart = ({ cart, products, handleClearCart }) => {
     if (cart.length > 0) {
       setOffer(true);
     } else {
+      setOffer(false);
     }
   }, [cart]);
 
